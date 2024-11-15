@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class SiswaController extends Controller
         try {
             return Siswa::all();
         } catch (\Exception $e) {
+            // Menambahkan return response json untuk error handling
             return response()->json(['error' => 'Gagal mengambil data siswa.'], 500);
         }
     }
@@ -23,7 +25,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        // Tidak digunakan, dibiarkan kosong sesuai RESTful Resource Controller
     }
 
     /**
@@ -31,18 +33,25 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'kelas' => 'required|string|max:10',
-            'umur' => 'required|integer',
-        ]);
-        
         try {
-            $siswa = Siswa::create($validatedData);
-        
-            return response()->json($siswa, 201);
+            $validatedData = $request->validate([
+                'nama' => 'required|string|regex:/^[\pL\s]+$/u|max:255',
+                'kelas' => 'required|string|regex:/^XII\sIPA\s\d$/',
+                'umur' => 'required|integer|between:6,18',
+            ], [
+                'nama.regex' => 'Nama hanya boleh mengandung huruf dan spasi.',
+                'kelas.regex' => 'Kelas harus mengikuti format "XII IPA 1".',
+                'umur.between' => 'Umur harus berada dalam rentang 6 hingga 18 tahun.',
+            ]);
+
+            $siswa = Siswa::create($validatedData); // Menambahkan simpan ke database
+            return response()->json($siswa, 201); // Status code untuk created
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors() // Mengirim error validasi
+            ], 422);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Gagal menyimpan data siswa.'], 500);
+            return response()->json(['error' => 'Gagal menambahkan data siswa.'], 500);
         }
     }
 
@@ -63,7 +72,7 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Tidak digunakan, dibiarkan kosong sesuai RESTful Resource Controller
     }
 
     /**
@@ -72,17 +81,21 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $siswa = Siswa::findOrFail($id);
+            $siswa = Siswa::findOrFail($id); // Menambahkan validasi ID sebelum update
         
             $validatedData = $request->validate([
-                'nama'  => 'sometimes|required|string|max:255',
+                'nama' => 'sometimes|required|string|max:255',
                 'kelas' => 'sometimes|required|string|max:10',
-                'umur'  => 'sometimes|required|integer',
+                'umur' => 'sometimes|required|integer|between:6,18', // Menambahkan rentang umur
             ]);
         
             $siswa->update($validatedData);
         
             return response()->json($siswa);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors() // Menambahkan pesan validasi
+            ], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Gagal memperbarui data siswa.'], 500);
         }
@@ -92,14 +105,14 @@ class SiswaController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-{
-    try {
-        $siswa = Siswa::findOrFail($id);
-        $siswa->delete();
-    
-        return response()->json(['message' => 'Data siswa berhasil dihapus.'], 200); // Mengirim pesan sukses
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Gagal menghapus data siswa.'], 500);
+    {
+        try {
+            $siswa = Siswa::findOrFail($id);
+            $siswa->delete();
+        
+            return response()->json(['message' => 'Data siswa berhasil dihapus.'], 200); // Mengirim pesan sukses
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Gagal menghapus data siswa.'], 500);
+        }
     }
-}
 }
