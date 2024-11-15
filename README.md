@@ -19,6 +19,13 @@ Update data siswa
 ![Menghapus Data siswa](https://github.com/user-attachments/assets/389dc332-a593-4918-804a-15927144a72a)
 Menghapus data siswa
 
+Tugas Tambahan
+![Untuk Tugas tambahan](https://github.com/user-attachments/assets/20053074-83e1-4153-98c8-ce07786e4890)
+Untuk menampilkan pesan erorr kalau tidak sesuai pengisiannya
+
+![Hasil Tugas Tambahan](https://github.com/user-attachments/assets/290bf130-9dbe-4028-bd67-31000c140837)
+Hasil Setelah bisa menambahkan data sesuai pengisian
+
 
 
 
