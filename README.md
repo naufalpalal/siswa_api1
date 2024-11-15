@@ -1,3 +1,29 @@
+![register1](https://github.com/user-attachments/assets/211d55d9-a969-4af5-89ca-c580ac19b447)
+Register
+
+![login1](https://github.com/user-attachments/assets/ff97c9c0-b291-468f-b120-f5cbb6a2b44b)
+Login
+
+![Melihat data siswa awal](https://github.com/user-attachments/assets/36e645f5-c966-43ce-8b7f-ed35350cc5c3)
+Setelah register lalu login
+
+![Menambahkan siswa1](https://github.com/user-attachments/assets/9cc5039b-8c0a-45a4-bc6e-bb2d3c1ca120)
+Setelah menambahkan data siswa
+
+![Melihat data siswa after](https://github.com/user-attachments/assets/b9f5bcb2-4b6f-44c7-bee0-be30d89433cd)
+Melihat data siswa 
+
+![Update Data siswa1](https://github.com/user-attachments/assets/c85c680a-f4f5-493e-a399-c7afa043b719)
+Update data siswa
+
+![Menghapus Data siswa](https://github.com/user-attachments/assets/389dc332-a593-4918-804a-15927144a72a)
+Menghapus data siswa
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
